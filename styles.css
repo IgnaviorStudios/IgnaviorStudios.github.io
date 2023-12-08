@@ -8,42 +8,47 @@ header {
     /* Navigation bar */
     position: absolute;
     top: 20px;
-    left: 20%;
-    transform: translateX(-20%);
-    background-color: #191919;
+    left: 25%;
+    transform: translateX(-22.5%);
+    background-color: #151515;
     color: #fff;
     padding: 10px;
     display: flex;
     width: 90%;
-    height: 50px;
-    border-radius: 20px;
+    height: 60px;
+    border-radius: 17px;
     justify-content: space-between;
     align-items: center;
     z-index: 2;
 }
 
+nav a {
+    /* Navigation links */
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.4s ease;
+    font-family: 'Rubik', sans-serif;
+}
+
 nav ul {
+    /* Navigation links, list */
     list-style: none;
     display: flex;
 }
 
 nav ul li {
-    margin-right: 20px;
-}
-
-nav a {
-    text-decoration: none;
-    color: #fff;
-    transition: color 0.3s ease;
+    /* ^ Links, list placement */
+    margin-right: 25px;
 }
 
 nav a:hover {
+    /* Navlink hover-over effect */
     color: #b03e3e;
     text-decoration: underline;
 }
 
 .home {
-    background-color: #f4f4f4;
+    background-color: #090909;
 }
 
 .hero {
@@ -69,7 +74,7 @@ nav a:hover {
 }
 
 .logo img {
-  width: 65px;
+  width: 70px;
   height: auto;
   position: relative;
   top: 3px; 
@@ -82,7 +87,7 @@ nav a:hover {
 .hero h1 {
     font-size: 4.5em;
     margin-bottom: 10px;
-    font-family: "Courier New", sans-serif;
+    font-family: "Permanent Marker", cursive;
 }
 
 .hero p {
@@ -92,12 +97,12 @@ nav a:hover {
 
 .cta-button {
     display: inline-block;
-    padding: 10px 20px;
-    font-size: 1.2em;
+    padding: 12px 20px;
+    font-size: 1.15em;
     text-decoration: none;
     color: #fff;
     background-color: #b03e3e;
-    border-radius: 5px;
+    border-radius: 7px;
     transition: opacity 0.3s ease;
 }
 
@@ -108,11 +113,11 @@ nav a:hover {
 .scroll-hint {
     color: #fff;
     opacity: 0.4;
-    margin-top: 30px;
+    /* margin-top: ; */
 }
 
 .gallery {
-    padding: 20px;
+    padding: 40px;
     color: #555;
 }
 
@@ -120,49 +125,52 @@ nav a:hover {
     margin-bottom: 20px;
     display: flex;
     align-items: center;
-    background-color: #333;
-    border-radius: 30px;
+    background-color: #191919;
+    border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .image-container{
-  width: 65%;
-  border-radius: 30px;
-  margin-right: 60px;
+  width: 52%;
+  /* border-radius: ; */
+  margin-right: 120px;
 }
 
 .project img {
-    /*width: 65%;*/
-    border-radius: 30px;
-    padding: 60px;
+    width: 100%;
+    border-radius: 65px;
+    padding: 50px;
     transition: transform 0.3s ease;
 }
 
 .image-container:hover img {
-  transform: scale(1.02);
+  transform: scale(1.01);
 }
 
 .project-info {
-    padding: 40px;
+    padding: 30px;
 }
 
 .project h2 {
+    /* Project Title */
     color: #fff;
     margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
 }
 
 .project p {
+    /* Project Description */
     color: #fff;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .project-link {
     display: inline-block;
-    padding: 8px 15px;
+    padding: 10px 18px;
     text-decoration: none;
     color: #00bcd4;
     border: 1px solid #b03e3e;
-    border-radius: 3px;
+    border-radius: 7px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -171,9 +179,23 @@ nav a:hover {
     color: #fff;
 }
 
-.footer {
-    background-color: #333;
+footer {
+    background-color: #090909;
     color: #fff;
     text-align: center;
-    padding: 10px;
+    padding: 1px;
+    justify-content: center;
+    align-items: center;
+}
+
+footer a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.4s ease;
+    font-family: 'Rubik', sans-serif;
+}
+
+footer a:hover {
+  color: #b03e3e;
+  text-decoration: underline;
 }
