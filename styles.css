@@ -5,11 +5,12 @@ body {
 }
 
 header {
+    /* Navigation bar */
     position: absolute;
     top: 20px;
     left: 20%;
     transform: translateX(-20%);
-    background-color: #333;
+    background-color: #191919;
     color: #fff;
     padding: 10px;
     display: flex;
