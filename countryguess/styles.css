@@ -8,10 +8,15 @@
 /* Body styles */
 body {
     font-family: 'Inter', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     line-height: 1.6;
     background-color: #212121;
     color: #333;
     margin-top: 20px; /* Add margin to the top of the body */
+    font-variation-settings:
+        "slnt" 0;
 }
 
 /* Container styles */
@@ -80,5 +85,5 @@ button:hover {
 /* Hint container styles */
 #hint-container {
     margin-top: 20px;
-    font-style: italic;
+    font-style: normal;
 }
