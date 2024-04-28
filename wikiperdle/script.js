@@ -270,3 +270,20 @@ function clearMessages() {
     const messageContainer = document.getElementById('message-container');
     messageContainer.innerHTML = '';
 }
+
+// Event listener for the guess button
+document.getElementById('guess-button').addEventListener('click', () => {
+    const guessInput = document.getElementById('guess-input').value;
+    guess(guessInput);
+});
+
+// Event listener for pressing Enter in the guess input field
+document.getElementById('guess-input').addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        const guessInput = document.getElementById('guess-input').value;
+        guess(guessInput);
+    }
+});
+
+// Start the game when the page loads
+play();
