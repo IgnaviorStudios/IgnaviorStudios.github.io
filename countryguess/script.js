@@ -45,6 +45,7 @@ let correctCountry;
 let comparisonCountry;
 let guessCount = 0;
 const guesses = [];
+const hints = [];
 
 // Choose a random country and comparison country
 function chooseRandomCountries() {
@@ -80,6 +81,7 @@ function generateHint() {
         default:
             hint = "";
     }
+    hints.push(hint);
     return hint;
 }
 
@@ -97,9 +99,18 @@ function playGame(guess) {
     
     if (guessedCountry) {
         if (guessedCountry.name.toLowerCase() === correctCountry.name.toLowerCase()) {
-            return `Correct! You guessed ${guess}!`;
+            return `Correct! The correct country was ${guess}!`;
         } else {
-            return `Wrong guess! Here's a hint: ${generateHint()}`;
+            if (guessCount >= 6) {
+                return `You lose! Try again.`;
+            } else {
+                const hint = generateHint();
+                if (hint) {
+                    return `Wrong guess! Here's a hint: ${hint}`;
+                } else {
+                    return `You lose! Try again.`;
+                }
+            }
         }
     } else {
         return `Invalid country name. Please enter a valid country name.`;
@@ -111,6 +122,11 @@ function updateGuessesContainer() {
     guessesContainer.innerHTML = `<p>Previous guesses: ${guesses.join(', \n ')}</p>`;
 }
 
+function updateHintsContainer() {
+    const hintsContainer = document.getElementById('hint-container');
+    hintsContainer.innerHTML = `<p>Previous hints:<br>${hints.join('<br>')}</p>`
+}
+
 // Event listener for the submit button
 document.getElementById('submit-button').addEventListener('click', function() {
     const guessInput = document.getElementById('guess-input');
@@ -120,6 +136,7 @@ document.getElementById('submit-button').addEventListener('click', function() {
         const resultMessage = playGame(guess);
         document.getElementById('message-container').textContent = resultMessage;
         updateGuessesContainer();
+        updateHintsContainer();
         guessInput.value = '';
     } else {
         document.getElementById('message-container').textContent = "Please enter a country name. ";
