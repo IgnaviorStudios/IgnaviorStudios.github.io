@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=2.5">
     <title>Country Guess!</title>
     <link rel="stylesheet" href="styles.css">
+
+    <script>
+        // Redirect index.html to base
+        if (window.location.pathname.endsWith("/countryguess/index.html")) {
+            window.location.href = "/countryguess";
+        }
+    </script>
 </head>
 <body>
     <h1>Guess a Country</h1>
