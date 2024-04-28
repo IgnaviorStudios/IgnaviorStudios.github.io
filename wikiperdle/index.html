@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikiperdle Game</title>
+    <link rel="stylesheet" href="wikiperdle.css">
+
+    <script>
+        // Redirect index.html to base
+        if (window.location.pathname.endsWith("/wikiperdle/index.html")) {
+            window.location.href = "/wikiperdle";
+        }
+    </script>
+</head>
+
+<body>
+    <div id="game-container">
+        <h1>WIKIPERDLE</h1>
+        <label for="guess-input">Guess an Article: </label>
+        <input type="text" id="guess-input" placeholder="Enter your guess...">
+        <button id="submit-button">Guess</button>
+        <div id="message-container"></div>
+        <div id="guesses-container"></div>
+    </div>
+    <script src="wikiperdle.js"></script>
+</body>
+
+</html>
