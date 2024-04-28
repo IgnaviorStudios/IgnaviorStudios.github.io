@@ -21,8 +21,15 @@ h1 {
 }
 
 .as-of {
-  font-size: 24px;
+  font-size: 14px;
   margin-bottom: 20px;
+  alpha: 75%;
+}
+
+.textbox {
+  width: 100%;
+  max-width: 35vw;
+  margin: 0 auto;
 }
 
 p {
