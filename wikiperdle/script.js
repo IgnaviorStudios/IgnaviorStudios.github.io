@@ -197,9 +197,6 @@ const gameArticles = [
     "Octopus"
 ];
 
-// List of player information [guessCount, answer, articleList]
-let playerData = null;
-
 // Function to fetch and parse XML data from a Wikipedia article
 async function fetchArticleData(articleTitle) {
     const response = await fetch(`https://en.wikipedia.org/wiki/${articleTitle}`);
@@ -222,39 +219,21 @@ function extractLinks(xmlDoc) {
     return links;
 }
 
-// Function to start the game
-function play() {
+// Function to handle player guesses
+function guess() {
+    const playerGuess = document.getElementById('guess-input').value.trim().toLowerCase();
     const answer = gameArticles[Math.floor(Math.random() * gameArticles.length)];
     fetchArticleData(answer).then(xmlDoc => {
         const articleList = extractLinks(xmlDoc);
-        playerData = { guessCount: 0, answer, articleList };
-        displayMessage(`Game started! Try to guess the Wikipedia article.`);
+        if (articleList.some(link => link.toLowerCase().includes(playerGuess))) {
+            displayMessage(`Correct! You guessed "${playerGuess}"!`);
+        } else {
+            displayMessage(`Wrong guess! The correct answer was "${answer}".`);
+        }
+    }).catch(error => {
+        console.error('Error fetching article data:', error);
+        displayMessage(`Error: Unable to fetch article data. Please try again.`);
     });
-}
-
-// Function to handle player guesses
-function guess(playerGuess) {
-    if (!playerData) {
-        displayMessage(`Error: Game has not started.`);
-        return;
-    }
-
-    playerData.guessCount++;
-
-    if (playerGuess.toLowerCase() === playerData.answer.toLowerCase()) {
-        displayMessage(`Correct! You guessed "${playerGuess}" in ${playerData.guessCount} tries.`);
-        playerData = null;
-        return;
-    }
-
-    if (playerData.guessCount >= 5) {
-        displayMessage(`You lose! The correct answer was "${playerData.answer}".`);
-        playerData = null;
-        return;
-    }
-
-    const randomArticle = playerData.articleList[Math.floor(Math.random() * playerData.articleList.length)];
-    displayMessage(`Wrong guess! You have ${5 - playerData.guessCount} guesses left. Here's a hint: ${randomArticle}`);
 }
 
 // Function to display messages to the player
@@ -265,25 +244,15 @@ function displayMessage(message) {
     messageContainer.appendChild(messageElement);
 }
 
-// Function to clear previous messages
-function clearMessages() {
-    const messageContainer = document.getElementById('message-container');
-    messageContainer.innerHTML = '';
-}
-
 // Event listener for the guess button
-document.getElementById('guess-button').addEventListener('click', () => {
-    const guessInput = document.getElementById('guess-input').value;
-    guess(guessInput);
-});
+document.getElementById('guess-button').addEventListener('click', guess);
 
 // Event listener for pressing Enter in the guess input field
 document.getElementById('guess-input').addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
-        const guessInput = document.getElementById('guess-input').value;
-        guess(guessInput);
+        guess();
     }
 });
 
-// Start the game when the page loads
-play();
+// Initial message
+displayMessage(`Guess the topic of a random Wikipedia article.`);
