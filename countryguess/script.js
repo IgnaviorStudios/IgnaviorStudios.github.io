@@ -102,13 +102,13 @@ function playGame(guess) {
             return `Correct! The correct country was ${guess}!`;
         } else {
             if (guessCount >= 6) {
-                return `You lose! Try again.`;
+                return `You lose! The correct country was ${correctCountry.name}. Try again.`;
             } else {
                 const hint = generateHint();
                 if (hint) {
                     return `Wrong guess! Here's a hint: ${hint}`;
                 } else {
-                    return `You lose! Try again.`;
+                    return `You lose! The correct country was ${correctCountry.name}. Try again.`;
                 }
             }
         }
