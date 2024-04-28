@@ -44,6 +44,7 @@ let countryData;
 let correctCountry;
 let comparisonCountry;
 let guessCount = 0;
+const guesses = [];
 
 // Choose a random country and comparison country
 function chooseRandomCountries() {
@@ -84,12 +85,15 @@ function generateHint() {
 
 // Calculate area ratio between the correct country and comparison country
 function getComparisonAreaRatio() {
-    return parseFloat(correctCountry.area.replace(/\s/g, '')) / parseFloat(comparisonCountry.area.replace(/\s/g, ''));
+    //return parseFloat(correctCountry.area.replace(/\s/g, '')) / parseFloat(comparisonCountry.area.replace(/\s/g, ''));
+    const ratio = parseFloat(correctCountry.area.replace(/\s/g, '')) / parseFloat(comparisonCountry.area.replace(/\s/g, ''));
+    return ratio.toFixed(2);
 }
 
 // Play the game
 function playGame(guess) {
     const guessedCountry = countryData.find(country => country.name.toLowerCase() === guess.toLowerCase());
+    guesses.push(guess);
     
     if (guessedCountry) {
         if (guessedCountry.name.toLowerCase() === correctCountry.name.toLowerCase()) {
@@ -102,16 +106,35 @@ function playGame(guess) {
     }
 }
 
+function updateGuessesContainer() {
+    const guessesContainer = document.getElementById('guesses-container');
+    guessesContainer.innerHTML = `<p>Previous guesses: ${guesses.join(', \n ')}</p>`;
+}
+
 // Event listener for the submit button
 document.getElementById('submit-button').addEventListener('click', function() {
-    const guess = document.getElementById('guess-input').value.trim();
-    const messageContainer = document.getElementById('message-container');
-
+    const guessInput = document.getElementById('guess-input');
+    const guess = guessInput.value.trim();
+    
     if (guess) {
         const resultMessage = playGame(guess);
-        messageContainer.textContent = resultMessage;
+        document.getElementById('message-container').textContent = resultMessage;
+        updateGuessesContainer();
+        guessInput.value = '';
     } else {
-        messageContainer.textContent = "Please enter a country name.";
+        document.getElementById('message-container').textContent = "Please enter a country name. ";
+    }
+});
+
+// Event listener for replay button
+document.getElementById('play-again-button').addEventListener('click', function() {
+    window.location.reload(); // play again = reload page lol
+});
+
+// Allow press Enter key to guess
+document.getElementById('guess-input').addEventListener('keypress', function(event){
+    if (event.key === 'Enter') {
+        document.getElementById('submit-button').click();
     }
 });
 
