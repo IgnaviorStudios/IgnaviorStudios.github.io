@@ -11,6 +11,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  max-width: 33%;
+  margin: 0 auto;
 }
 
 h1 {
