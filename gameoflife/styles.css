@@ -1,0 +1,19 @@
+body, html 
+{
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Remove scrollbars */
+}
+
+.canvas-container {
+  width: 100vw; /* Set container width to full viewport width */
+  height: 100vh; /* Set container height to full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  width: 100%; /* Set canvas width to 80% of container width */
+  height: auto; /* Let the height adjust to maintain aspect ratio */
+}
