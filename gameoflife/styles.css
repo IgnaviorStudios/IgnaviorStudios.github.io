@@ -16,4 +16,5 @@ body, html
 canvas {
   width: 100%; /* Set canvas width to 100% of container width */
   height: auto; /* Let the height adjust to maintain aspect ratio */
+  background-color: #313131
 }
