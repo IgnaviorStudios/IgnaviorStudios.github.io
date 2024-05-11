@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game of Life</title>
+  <link rel="stylesheet" href="styles.css"> 
+
+      <script>
+        // Redirect index.html to base
+        if (window.location.pathname.endsWith("/countryguess/index.html")) {
+            window.location.href = "/countryguess";
+        }
+    </script>
+</head>
+  
+<body>
+  <div class="canvas-container"> <!-- Container for canvas -->
+    <canvas id="myCanvas" width="3200" height="1800"></canvas> <!-- Set fixed width and height -->
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
