@@ -11,10 +11,21 @@ body, html
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 canvas {
   width: 100%; /* Set canvas width to 100% of container width */
   height: auto; /* Let the height adjust to maintain aspect ratio */
   background-color: #313131
+}
+
+.slider-container {
+  position: absolute;
+  bottom: 10px; /* Adjust to desired distance from bottom */
+  right: 10px; /* Adjust to desired distance from right */
+}
+
+.slider {
+  width: 150px; /* Adjust to desired width */
 }
