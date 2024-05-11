@@ -95,7 +95,7 @@ function gameLoop() {
         } else {
             aliveTiles.splice(aliveTiles.indexOf(tile), 1);
             tile.isAlive = false;
-            drawPixel(tile.x, tile.y, '#313131');
+            drawPixel(tile.x, tile.y, '#6b6b6b');
 
         }
     }
