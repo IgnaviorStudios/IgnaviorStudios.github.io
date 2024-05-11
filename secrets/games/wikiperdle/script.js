@@ -1,6 +1,6 @@
 // List of game articles (Replace this array with the data from your .txt file)
 const gameArticles = [
-      "Facebook",
+    "Facebook",
     "United States",
     "Donald Trump",
     "Wikipedia",
