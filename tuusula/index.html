@@ -10,16 +10,24 @@
     <h1>Hur länge kvar tills Tusby-spelet?</h1>
 
     <div id="progress" hidden style="position:sticky;top:0;background:#fff;padding:8px">
-      3.1 "Bubbeleh" <progress id="current" max="100"></progress>
-      4.0 "Det var en gång en Tusbyit" <progress id="future" max="100"></progress>
+      3.1 "Bubbeleh" 
+      <progress id="p_current" max="100"></progress> 
+      <span id="s_current"></span>
+      <br />
+      
+      4.0 "Det var en gång en Tusbyit" 
+      <progress id="p_future" max="100"></progress> 
+      <span id="s_future"></span>
     </div>
 
     <script>
       fetch('/tuusula/progress.json', { cache: 'no-cache' })
         .then(r => r.json())
         .then(d => {
-          document.getElementById('current').value = d.current;
-          document.getElementById('future').value = d.future;
+          document.getElementById('p_current').value = d.current;
+          document.getElementById('p_future').value = d.future;
+          document.getElementById('s_current').textContent = d.current;
+          document.getElementById('s_future').textContent = d.future;
           document.getElementById('progress').hidden = false;
         })
         .catch(() => {})
