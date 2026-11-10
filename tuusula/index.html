@@ -15,7 +15,7 @@
     </div>
 
     <script>
-      fetch('/progressbar/progress.json', { cache: 'no-cache' })
+      fetch('/tuusula/progress.json', { cache: 'no-cache' })
         .then(r => r.json())
         .then(d => {
           document.getElementById('current').value = d.current;
