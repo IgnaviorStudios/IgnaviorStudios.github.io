@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hur länge kvar tills Tusby-spelet?</title>
+  </head>
+
+  <body>
+    <h1>Hur länge kvar tills Tusby-spelet?</h1>
+
+    <div id="progress" hidden style="position:sticky;top:0;background:#fff;padding:8px">
+      3.1 "Bubbeleh" <progress id="current" max="100"></progress>
+      4.0 "Det var en gång en Tusbyit" <progress id="future" max="100"></progress>
+    </div>
+
+    <script>
+      fetch('/progressbar/progress.json', { cache: 'no-cache' })
+        .then(r => r.json())
+        .then(d => {
+          document.getElementById('current').value = d.current;
+          document.getElementById('future').value = d.future;
+          document.getElementById('progress').hidden = false;
+        })
+        .catch(() => {})
+    </script>
+  </body>
+
+</html>

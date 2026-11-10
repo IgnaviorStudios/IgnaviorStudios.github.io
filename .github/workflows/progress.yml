@@ -1,0 +1,56 @@
+name: Update Tuusula progress bar
+on:
+  schedule:
+    - cron: '7 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update progress.json
+        env:
+          TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
+          TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
+          CURRENT_BACKLOG: ${{ secrets.TRELLOLISTID_CURRENT_BACKLOG }}
+          CURRENT_DONE: ${{ secrets.TRELLOLISTID_CURRENT_DONE }}
+          FUTURE_BACKLOG: ${{ secrets.TRELLOLISTID_FUTURE_BACKLOG }}
+          FUTURE_DONE: ${{ secrets.TRELLOLISTID_FUTURE_DONE }}
+        run: |
+          set -euo pipefail
+
+          count() {
+            curl -fsS -G "https://api.trello.com/1/lists/$1/cards" \
+            --data-urlencode "key=$TRELLO_KEY" \
+            --data-urlencode "token=$TRELLO_TOKEN" \
+            --data-urlencode "fields=id" | jq length
+          }
+
+          pct() {
+            total=$(( $1 + $2 ))
+            if [ "$total" -eq 0 ]; then echo 0; else echo $(( 100 * $1 / total )); fi
+          }
+
+          c_done=$(count "$CURRENT_DONE")
+          c_todo=$(count "$CURRENT_BACKLOG")
+          f_done=$(count "$FUTURE_DONE")
+          f_todo=$(count "$FUTURE_BACKLOG")
+
+          mkdir -p tuusula
+          printf '{"current":%d,"future":%d,"updated":"%s"}\n' \
+            "$(pct "$c_done" "$c_todo")" \
+            "$(pct "$f_done" "$f_todo")" \
+            "$(date -u +%FT%TZ)" > tuusula/progress.json
+
+      - name: Commit
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add tuusula/progress.json
+        git commit -m "Update Tuusula progress bar"
+        git push
