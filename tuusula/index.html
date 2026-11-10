@@ -24,10 +24,10 @@
       fetch('/tuusula/progress.json', { cache: 'no-cache' })
         .then(r => r.json())
         .then(d => {
-          document.getElementById('p_current').value = d.current;
-          document.getElementById('p_future').value = d.future;
-          document.getElementById('s_current').textContent = d.current;
-          document.getElementById('s_future').textContent = d.future;
+          document.getElementById('p_current').value = d.current + '%';
+          document.getElementById('p_future').value = d.future + '%';
+          document.getElementById('s_current').textContent = d.current + '%';
+          document.getElementById('s_future').textContent = d.future + '%';
           document.getElementById('progress').hidden = false;
         })
         .catch(() => {})
