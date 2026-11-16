@@ -1,0 +1,19 @@
+h1 {
+    position: sticky;
+    margin: auto;
+    text-align: center
+}
+
+h2 {
+    text-align: center;
+    margin: auto;
+    padding: 12px;
+}
+
+.section_progress .sep {
+    border-radius: 3px;
+    position: sticky;
+    padding: 8px;
+    top: 0;
+    margin: auto;
+}
