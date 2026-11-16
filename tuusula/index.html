@@ -13,25 +13,40 @@
 
     <h2>Hur länge kvar tills Tusby-spelet?</h2>
 
-    <div id="progress" hidden style="position:sticky;top:0;background:#fff;padding:8px">
-      3.1 "Bubbeleh" 
-      <progress id="p_current" max="100"></progress> 
-      <span id="s_current"></span>
-      <br />
+    <div class="section_progress" id="progress">
+      <div class="" id="old">
+        <span id="v_num">3.1</span>
+        <span id="v_title">"Bubbeleh"</span>
+
+        <progress id="p_old" max="100" value="100"></progress>
+        <span id="s_old">100.0% LIVE!</span>
+      </div>
       
-      4.0 "Det var en gång en Tusbyit" 
-      <progress id="p_future" max="100"></progress> 
-      <span id="s_future"></span>
+      <div class="sep" id="second">
+        <span id="v_num">4.0</span>
+        <span id="v_title">"Det var en gång en Tusbyit"</span>
+
+        <progress id="p_second" max="100"></progress>
+        <span id="s_second">xy.z%</span>
+      </div>
+
+      <div class="sep" id="first">
+        <span id="v_num">5.0</span>
+        <span id="v_title"></span>
+        
+        <progress id="p_first" max="100"></progress>
+        <span id="s_first">ab.c%</span>
+      </div>
     </div>
 
     <script>
       fetch('/tuusula/progress.json', { cache: 'no-cache' })
         .then(r => r.json())
         .then(d => {
-          document.getElementById('p_current').value = d.current;
-          document.getElementById('p_future').value = d.future;
-          document.getElementById('s_current').textContent = d.current + '%';
-          document.getElementById('s_future').textContent = d.future + '%';
+          document.getElementById('p_first').value = d.current;
+          document.getElementById('p_second').value = d.future;
+          document.getElementById('s_first').textContent = d.current + '%';
+          document.getElementById('s_second').textContent = d.future + '%';
           document.getElementById('progress').hidden = false;
         })
         .catch(() => {})
